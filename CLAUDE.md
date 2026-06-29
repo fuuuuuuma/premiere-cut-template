@@ -1,31 +1,18 @@
-# Premiere Pro 無音カット テンプレート
+# Premiere Pro 無音カット — セットアップウィザード
 
-このリポジトリは Premiere Pro XML の無音カットワークフロー用テンプレートです。
+このリポジトリを読み込んだら、以下を自動で実行してください。
 
-## フォルダ構成
+## 起動手順
 
-```
-.
-├── scripts/          # silence_cut.py を配置する
-├── input/            # カット対象の XML を置く
-└── output/
-    └── cut/          # カット済み XML の出力先
-```
+1. `~/.claude/CLAUDE.md` が存在すれば読み込み、文体・スタイルを把握する
+2. `.template/questions.md` を読む
+3. 質問を **1問ずつ** ユーザーに聞く（まとめて聞かない）
+4. 全回答が揃ったら `.template/skill-template.md` を元にスキルファイルを生成する
+5. `.template/structure.md` を元にフォルダ構成を作る
 
-## セットアップ手順（Claude Code 向け）
+## 注意
 
-1. `scripts/silence_cut.py` を配置する
-2. `input/` に Premiere Pro からエクスポートした XML を置く
-3. 以下のコマンドで実行する
-
-```bash
-python3 scripts/silence_cut.py input/<ファイル名>.xml --output-dir output/cut
-```
-
-## オプション
-
-| オプション | 説明 | デフォルト |
-|---|---|---|
-| `--threshold` | 無音判定閾値（dB） | -50 |
-| `--min-silence` | 最小無音長（秒） | 0.2 |
-| `--padding` | 余白フレーム数 | 2 |
+- 質問は必ず1問ずつ。まとめて聞かない
+- ユーザーが答えを迷っていたらデフォルト値を提示して選ばせる
+- ffmpeg が未インストールの場合はインストール手順も出力する
+- スキルファイルは `~/.claude/commands/{{コマンド名}}.md` に保存する
